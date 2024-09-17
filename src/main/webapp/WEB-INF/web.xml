@@ -1,16 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>Assignment-30-09</display-name>
+  <display-name>Assignment3009</display-name>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <servlet-name>index page</servlet-name>
+    <jsp-file>/index.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>index page</servlet-name>
+    <url-pattern>/index</url-pattern>
+  </servlet-mapping>
   
   <servlet>
-		<servlet-name>index page</servlet-name>
-        <jsp-file>/index.jsp</jsp-file>
-	</servlet>
-	 <servlet-mapping>
-        <servlet-name>index page</servlet-name>
-        <url-pattern>/indexpage</url-pattern>
-    </servlet-mapping>
+    <servlet-name>login page</servlet-name>
+    <jsp-file>/login.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>login page</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>register page</servlet-name>
+    <jsp-file>/register.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>register page</servlet-name>
+    <url-pattern>/register</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>restore page</servlet-name>
+    <jsp-file>/restorepassword.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>restore page</servlet-name>
+    <url-pattern>/restorepassword</url-pattern>
+  </servlet-mapping>
 </web-app>

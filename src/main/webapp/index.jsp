@@ -1,14 +1,22 @@
+
+<%
+if (session.getAttribute("email") == null) {
+	response.sendRedirect("login");
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="Basic Project with login, logout and forget password function" />
+<meta name="description"
+	content="Basic Project with login, logout and forget password function" />
 <meta name="author" content="Nguyen Hoang Tung" />
 <title>UTE</title>
 <!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="https://utexlms.hcmute.edu.vn/pluginfile.php/1/theme_maker/logo/1723795873/logo-utex%20%281%29.png" />
+<link rel="icon" type="image/x-icon"
+	href="https://utexlms.hcmute.edu.vn/pluginfile.php/1/theme_maker/logo/1723795873/logo-utex%20%281%29.png" />
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
 	crossorigin="anonymous"></script>
@@ -38,9 +46,9 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="logout">Logout</a></li>
+						class="nav-link py-3 px-0 px-lg-3 rounded" href="LogoutService">Logout</a></li>
 					<li class="nav-item mx-0 mx-lg-1 bg-danger"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="account"><%=session.getAttribute("Email")%></a></li>
+						class="nav-link py-3 px-0 px-lg-3 rounded"><%=session.getAttribute("email")%></a></li>
 				</ul>
 			</div>
 		</div>
@@ -56,12 +64,24 @@
 			<!-- Icon Divider-->
 			<div class="divider-custom divider-light">
 				<div class="divider-custom-line"></div>
-            </div>
+			</div>
+		</div>
 	</header>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
 	<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<input type="hidden" id="status"
+		value="<%=request.getAttribute("status")%>">
+	<script type="text/javascript">
+		var status = document.getElementById("status").value;
+			if (status == "success") {
+			swal("Login Successfully", "Success");
+		} else if (status == "unknow") {
+			swal("Error", "Error");
+		}
+	</script>
 </body>
 </html>
