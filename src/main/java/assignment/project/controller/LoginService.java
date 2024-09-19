@@ -1,4 +1,4 @@
-package assignment.project.service;
+package assignment.project.controller;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
