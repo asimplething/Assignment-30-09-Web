@@ -76,17 +76,14 @@ if (session.getAttribute("email") != null) {
 	<script type="text/javascript">
 		var status = document.getElementById("status").value;
 		if(status == "failed")
-			{
 			swal("Wrong account or password", "Failed");
-			}
 		else if(status == "success")
-			{
 			swal("Account is registered", "Success");
-			}
+		else if(status == "nodatabase")
+			swal("Failed", "Can't login to the server (database error?)!");
 		else if(status == "unknow")
-			{
-			swal("Error","Error");
-			}
+			swal("Failed", "Can not sign up your account for some reason...");
+
 	</script>
 </body>
 <!-- This templates was made by Colorlib (https://colorlib.com) -->

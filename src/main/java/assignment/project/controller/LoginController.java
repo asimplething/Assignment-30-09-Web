@@ -16,7 +16,7 @@ import assignment.project.dao.UserDao;
  * Servlet implementation class LoginService
  */
 @WebServlet("/LoginService")
-public class LoginService extends HttpServlet {
+public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -32,7 +32,12 @@ public class LoginService extends HttpServlet {
 		HttpSession session = request.getSession();
 		CachedRowSet rowSet = UserDao.findUserByEmailAndPass(userEmailString, userPassString);
 		try {
-			if (rowSet == null || !rowSet.next()) {
+			if(rowSet == null)
+			{
+				request.setAttribute("status", "nodatabase");
+				dispatcher = request.getRequestDispatcher("login");
+			}
+		else if (!rowSet.next()) {
 				request.setAttribute("status", "failed");
 				dispatcher = request.getRequestDispatcher("login");
 			} else {
@@ -44,11 +49,12 @@ public class LoginService extends HttpServlet {
 
 		} catch (Exception e) {
 			// TODO: handle exception
-			request.setAttribute("status", "unknow");
+			request.setAttribute("status", "unkhow");
 			dispatcher = request.getRequestDispatcher("login");
 			e.printStackTrace();
+		} finally {
+			dispatcher.forward(request, response);
 		}
-		dispatcher.forward(request, response);
 	}
 
 }

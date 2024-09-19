@@ -66,14 +66,14 @@ public class UserDao {
 			statement = dbConnection.prepareStatement("SELECT count(*) FROM Users");
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
-			int resultNumber =resultSet.getInt(1);
+			int resultNumber = resultSet.getInt(1);
 			dbConnection.close();
 			return resultNumber;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 0;
 		}
+		return 0;
 	}
 	public static boolean insertAccount(String Name, String Email, String Password,String Created_Time) {
 		dbConnection = DatabaseConnection.getConnection();
@@ -92,8 +92,7 @@ public class UserDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
-		
+		return false;
 	}
 }

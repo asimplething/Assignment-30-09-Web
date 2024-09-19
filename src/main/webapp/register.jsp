@@ -74,10 +74,14 @@ if (session.getAttribute("email") != null) {
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
 		var status = document.getElementById("status").value;
-		if (status == "failed")
+		if (status == "existedemail")
 			swal("Failed", "The Email has already been taken!");
+		else if (status == "unknow")
+			swal("Failed", "Can not sign up your account for some reason...");
 		else if(status == "nopassword")
 			swal("Failed", "Please repeat your password correctly!");
+		else if(status == "nodatabase")
+			swal("Failed", "Can't register account to the server (database error?)!");
 	</script>
 
 </body>

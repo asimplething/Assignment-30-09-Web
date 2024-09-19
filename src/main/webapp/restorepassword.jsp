@@ -22,8 +22,8 @@
 				<div class="signin-content">
 					<div class="signin-form">
 						<h2 class="form-title">Restore Password</h2>
-						<form method="post" action="ForgotPassService" class="register-form"
-							id="login-form">
+						<form method="post" action="ForgotPassService"
+							class="register-form" id="login-form">
 							<div class="form-group">
 								<label for="email"><i
 									class="zmdi zmdi-account material-icons-name"></i></label> <input
@@ -56,14 +56,18 @@
 		value="<%=request.getAttribute("password")%>">
 	<script type="text/javascript">
 		var status = document.getElementById("status").value;
-		if (status == "failed") {
+		if (status == "failed")
 			swal("No email existing", "Failed");
-		} else if (status == "success") {
+		else if (status == "success") 
+		{
 			var password = document.getElementById("password").value;
 			swal("Your Password is: " + password, "Success");
-		} else if (status == "unknow") {
-			swal("Error", "Error");
-		}
+		} 
+		else if (status == "nodatabase")
+			swal("Failed",
+					"Can't find account in the server (database error?)!");
+		else if (status == "unknow")
+			swal("Failed", "Can not sign up your account for some reason...");
 	</script>
 </body>
 <!-- This templates was made by Colorlib (https://colorlib.com) -->
