@@ -1,4 +1,4 @@
-package assignment.project.service;
+package assignment.project.controller;
 
 import java.io.IOException;
 
@@ -16,25 +16,20 @@ import assignment.project.dao.UserDao;
  * Servlet implementation class ForgotPassService
  */
 @WebServlet("/ForgotPassService")
-public class ForgotPassService extends HttpServlet {
+public class ForgotPassController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ForgotPassService() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userEmailString = request.getParameter("email");
 		RequestDispatcher dispatcher = null;
-		CachedRowSet rowSet = UserDao.findUserByEmail(userEmailString);
+		
 		try {
-			if (rowSet == null || !rowSet.next()) {
+			CachedRowSet rowSet = UserDao.findUserByEmail(userEmailString);
+			if (rowSet == null)
+			{
+				request.setAttribute("status", "nodatabase");
+			}
+			else if (!rowSet.next()) {
 				request.setAttribute("status", "failed");
 			} 
 			else {
@@ -45,9 +40,10 @@ public class ForgotPassService extends HttpServlet {
 			// TODO: handle exception
 			request.setAttribute("status", "unknow");
 			e.printStackTrace();
+		} finally {
+			dispatcher = request.getRequestDispatcher("restorepassword");
+			dispatcher.forward(request, response);
 		}
-		dispatcher = request.getRequestDispatcher("restorepassword");
-		dispatcher.forward(request, response);
 	}
 
 }
